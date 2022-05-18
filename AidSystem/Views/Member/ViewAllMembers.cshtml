@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AidSystemDAL.Models.Member>
+@{
+    ViewData["Title"] = "ViewAllMembers";
+}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/table.css">
+
+    
+  </head>
+  <body>
+  <div class="content">
+        <div class="container">
+
+      <div class="table-responsive">
+                    <table class="table table-striped custom-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Номер</th>
+                                <th scope="col">Име</th>
+                                <th scope="col">Втори име</th>
+                                <th scope="col">Фамилия</th>
+                                <th scope="col">Код</th>
+                                <th scope="col">Дата назначен</th>
+                                <th scope="col">Дата напуснал</th>
+                                <th scope="col">Номер на организация</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model)
+                            {
+                                <tr scope="row">
+                                    <td>@m.ID</td>
+                                    <td>@m.FirstName</td>
+                                    <td>@m.SecondName</td>
+                                    <td>@m.LastName</td>
+                                    <td>@m.Code</td>
+                                    <td>@m.AppointedDate</td>
+                                    <td>@m.DateLeft</td>
+                                    <td>@m.OrganizationID</td>
+                                </tr>
+                            }
+          </tbody>
+        </table>
+        
+        <div>
+            <input type="button"
+                   value="Добави клиент"
+                   onclick="location.href='@Url.Action("AddMember", "Member" )'" />
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  </body>
+</html>
