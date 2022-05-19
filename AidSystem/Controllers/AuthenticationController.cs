@@ -54,10 +54,14 @@ namespace AidSystem.Controllers
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
-
                 var anatoliyIdentity = new ClaimsIdentity(authClaims, "Login");
 
                 var userPrincipal = new ClaimsPrincipal(new[] { anatoliyIdentity });
+
+                await userManager.GetClaimsAsync(user);
+                await userManager.AddClaimsAsync(user, authClaims);
+                await userManager.GetLoginsAsync(user);
+                await userManager.AddLoginAsync(user, new UserLoginInfo("https://localhost:7169/", "1234", "CharitySystem"));
 
                 bool emailStatus = await userManager.IsEmailConfirmedAsync(user);
                 if (emailStatus == false)
@@ -107,7 +111,6 @@ namespace AidSystem.Controllers
             EmailHelper emailHelper = new EmailHelper();
             bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
 
-            
             if (!await roleManager.RoleExistsAsync(UserRoles.Member))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Member));
 
