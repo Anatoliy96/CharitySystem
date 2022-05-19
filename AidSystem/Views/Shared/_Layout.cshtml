@@ -40,12 +40,12 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index"><span>Home</span></a></li>
                 <li class="has-children">
-                  <a href="about.html"><span>Dropdown</span></a>
+                  <a asp-area="" asp-controller="Member" asp-action="ViewAllMembers"><span>Всички участници</span></a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
+                    <li><a asp-area="" asp-controller="Member" asp-action="AddMember">Добави участник</a></li>
                     <li><a href="#">Menu Two</a></li>
                     <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
+                    @*<li class="has-children">
                       <a href="#">Dropdown</a>
                       <ul class="dropdown">
                         <li><a href="#">Menu One</a></li>
@@ -53,11 +53,43 @@
                         <li><a href="#">Menu Three</a></li>
                         <li><a href="#">Menu Four</a></li>
                       </ul>
-                    </li>
+                    </li>*@
                   </ul>
                 </li>
-                <li><a asp-area="" asp-controller="Member" asp-action="ViewAllMembers"><span>Всички участници</span></a></li>
-                <li><a href="about.html"><span>About</span></a></li>
+                <li class="has-children">
+                  <a asp-area="" asp-controller="Member" asp-action="ViewAllMembers"><span>Всички Организации</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a asp-area="" asp-controller="Member" asp-action="AddMember">Добави участник</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                    <li><a href="#">Menu Three</a></li>
+                    @*<li class="has-children">
+                      <a href="#">Dropdown</a>
+                      <ul class="dropdown">
+                        <li><a href="#">Menu One</a></li>
+                        <li><a href="#">Menu Two</a></li>
+                        <li><a href="#">Menu Three</a></li>
+                        <li><a href="#">Menu Four</a></li>
+                      </ul>
+                    </li>*@
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <a asp-area="" asp-controller="Member" asp-action="ViewAllMembers"><span>Всички Дейности</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a asp-area="" asp-controller="Member" asp-action="AddMember">Добави участник</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                    <li><a href="#">Menu Three</a></li>
+                    @*<li class="has-children">
+                      <a href="#">Dropdown</a>
+                      <ul class="dropdown">
+                        <li><a href="#">Menu One</a></li>
+                        <li><a href="#">Menu Two</a></li>
+                        <li><a href="#">Menu Three</a></li>
+                        <li><a href="#">Menu Four</a></li>
+                      </ul>
+                    </li>*@
+                  </ul>
+                </li>
                 <li><a asp-area="" asp-controller="Authentication" asp-action="Login"><span>Влез</span></a></li>
                 <li><a asp-area="" asp-controller="Authentication" asp-action="Register"><span>Регистрация</span></a></li>
               </ul>

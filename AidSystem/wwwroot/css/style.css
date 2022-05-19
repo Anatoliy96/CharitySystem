@@ -27,6 +27,9 @@ main{
     opacity: 1;
     visibility: visible; }
 
+  .container{
+      max-width: 1180px !important;
+  }
 p {
   color: #b3b3b3;
   font-weight: 300; }
