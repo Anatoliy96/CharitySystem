@@ -40,7 +40,48 @@ namespace AidSystem.Controllers
             }
             return View("AddMember");
         }
+        
+        public IActionResult EditMember(int ID)
+        {
+            MemberBLL memberBLL = new MemberBLL();
+            Member member = memberBLL.GetByID(ID);
+            if (member == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(member);
+            }
+        }
 
+        [HttpPost]
+        public IActionResult EditMember(
+            int ID,
+            string FirstName,
+            string SecondName,
+            string LastName,
+            int Code,
+            int OrganizationID)
+        {
+            
+                if (FirstName == null)
+                {
+                    return ViewBag.Error = "Member don't exist";
+                }
+                else
+                {
+                    MemberBLL memberBLL = new MemberBLL();
+                    memberBLL.Update(
+                        ID,
+                        FirstName,
+                        SecondName,
+                        LastName,
+                        Code,
+                        OrganizationID);
+                }
+                return RedirectToAction("ViewAllMembers", "Member");
+        } 
 
     }
 }

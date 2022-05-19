@@ -1,0 +1,55 @@
+﻿@model AidSystemDAL.Models.Member
+
+<head>
+    <!-- JS -->
+    <link rel="stylesheet" href="~/js/AddMember.js">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/AddMember.css">
+  </head>
+
+
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+                <h5 class="text-center mb-4">Промени участник</h5>
+                @using (Html.BeginForm("EditMember", "Member",FormMethod.Post,
+                       new { enctype = "multipart/form-data" }))
+                {
+                <form asp-action="EditMember" class="form-card" onsubmit="event.preventDefault()">
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                            <label for="FirstName" class="form-control-label px-3">First name</label> 
+                            <input type="text" id="fname" name="FirstName" value="@Model.FirstName" placeholder="Enter your first name" onblur="validate(1)"> 
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                            <label for="SecondName" class="form-control-label px-3">Second name</label> 
+                            <input type="text" id="sname" name="SecondName" value="@Model.SecondName" placeholder="Enter your second name" onblur="validate(2)"> 
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                           <label for="LastName" class="form-control-label px-3">Last name</label> 
+                           <input type="text" id="lname" name="LastName" value="@Model.LastName" placeholder="Enter your last name" onblur="validate(3)"> 
+                       </div>
+                       <div class="form-group col-sm-6 flex-column d-flex">
+                           <label for="Code" class="form-control-label px-3">Код</label> 
+                           <input type="text" id="code" name="Code" value="@Model.Code" placeholder="Enter code" onblur="validate(4)"> 
+                       </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                           <label for="OrganizationID" class="form-control-label px-3">Номер на организация</label>
+                           <input type="text" id="organizationid" name="OrganizationID" value="@Model.OrganizationID" placeholder="" onblur="validate(5)"> 
+                       </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Промени</button>
+                            </div>
+                    </div>
+                </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

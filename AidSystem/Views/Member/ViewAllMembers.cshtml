@@ -45,7 +45,7 @@
                             {
                                 <tr scope="row">
                                     <td>@m.ID</td>
-                                    <td>@m.FirstName</td>
+                                    <td>@Html.ActionLink(m.FirstName, "EditMember", "Member", new {id = m.ID})</td>
                                     <td>@m.SecondName</td>
                                     <td>@m.LastName</td>
                                     <td>@m.Code</td>

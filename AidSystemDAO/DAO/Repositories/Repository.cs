@@ -45,5 +45,11 @@ namespace AidSystemDAL.DAO.Repositories
         {
             return Context.Set<TEntity>().ToList();
         }
+
+        public void Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Update(entity);
+            Context.SaveChanges();
+        }
     }
 }

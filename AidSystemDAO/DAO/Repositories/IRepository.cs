@@ -16,6 +16,7 @@ namespace AidSystemDAL.DAO
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression);
         void Add(TEntity entity);
         void Remove(TEntity entity);
+        void Update(TEntity entity);
         //void DeleteAt(TEntity entity);
     }
 }

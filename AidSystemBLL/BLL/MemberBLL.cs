@@ -47,5 +47,27 @@ namespace AidSystemBLL.BLL
             UnitOfWork unitOfWork = new UnitOfWork(new AidDbContext());
             unitOfWork.Members.Add(member);
         }
+
+        public void Update(
+            int ID,
+            string FirstName,
+            string SecondName,
+            string LastName,
+            int Code,
+            int OrganizationID)
+        {
+            Member member = new Member();
+                
+                member.ID = ID;
+                member.FirstName = FirstName;
+                member.SecondName = SecondName;
+                member.LastName = LastName;
+                member.Code = Code;
+                member.OrganizationID = OrganizationID;
+            
+
+            UnitOfWork unitOfWork = new UnitOfWork(new AidDbContext());
+            unitOfWork.Members.Update(member);
+        }
     }
 }
