@@ -1,6 +1,9 @@
 ﻿using AidSystemBLL.BLL.EmailServices;
 using AidSystemDAL.Models.Authentication;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -34,6 +37,7 @@ namespace AidSystem.Controllers
             return await Task.Run(() => View());
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -43,8 +47,7 @@ namespace AidSystem.Controllers
                 var userRoles = await userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName)
                 };
 
                 foreach (var userRole in userRoles)
@@ -52,7 +55,7 @@ namespace AidSystem.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var anatoliyIdentity = new ClaimsIdentity(authClaims, "User Identity");
+                var anatoliyIdentity = new ClaimsIdentity(authClaims, "Login");
 
                 var userPrincipal = new ClaimsPrincipal(new[] { anatoliyIdentity });
 
@@ -62,39 +65,15 @@ namespace AidSystem.Controllers
                     return ViewBag.Error = "Email is unconfirmed, please confirm it first";
                 }
 
-                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["JWT:ValidIssuer"],
-                    audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
-                    claims: authClaims,
-                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                    );
-
-                new JwtSecurityTokenHandler().WriteToken(token);
-                var expiration = token.ValidTo;
-                var Name = user.UserName;
-
-                if (token != null)
+                if (user != null)
                 {
-                    await HttpContext.SignInAsync(userPrincipal);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     return ViewBag.Error = "Login failed";
                 }
-                //await HttpContext.SignInAsync(userPrincipal);
-                //return RedirectToAction("Index", "Home");
-                //return Ok(new
-                //{
-                //    token = new JwtSecurityTokenHandler().WriteToken(token),
-                //    expiration = token.ValidTo,
-                //    Name = user.UserName
-                //});
-                //HttpContext.SignInAsync(userPrincipal);
-
-                //return RedirectToAction("Index", "Home");
             }
             return View(model);
         }

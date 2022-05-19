@@ -1,6 +1,7 @@
 using AidSystemDAL.Contexts;
 using AidSystemDAL.DAO.UnitsOfWork;
 using AidSystemDAL.Models.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.Cookie.Name = "AnatoliyCookie";
+                options.LoginPath = "/Home/Login";
 
+            });
 builder.Services.AddDbContext<AidSystemDAL.Contexts.AidDbContext>(options => 
 options.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=AidSystemDb;Trusted_Connection=True;"));
 
-// Add identity and JWT
+// Add identity 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
 {
     opt.Password.RequiredLength = 7;
@@ -28,26 +35,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
 .AddDefaultTokenProviders();
 
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
 
-.AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-    };
-});
 
 var app = builder.Build();
 
