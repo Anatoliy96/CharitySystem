@@ -111,10 +111,12 @@ namespace AidSystem.Controllers
             EmailHelper emailHelper = new EmailHelper();
             bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
 
-            if (!await roleManager.RoleExistsAsync(UserRoles.Member))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.Member));
+            
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Member.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.User.ToString()));
 
-            await userManager.AddToRoleAsync(user, "Member");
+            await userManager.AddToRoleAsync(user, UserRoles.role.ToString());
 
             return RedirectToAction("Index", "Home");
         }

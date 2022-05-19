@@ -8,8 +8,11 @@ namespace AidSystemDAL.Models.Authentication
 {
     public class UserRoles
     {
-        public const string Admin = "Admin";
-        public const string Member = "Member";
-        public const string User = "User";
+        public enum Roles{
+            Admin,
+            Member,
+            User
+        }
+        public const Roles role = Roles.User;
     }
 }
