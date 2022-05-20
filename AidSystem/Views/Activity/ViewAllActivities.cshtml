@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AidSystemDAL.Models.Activity>
+@{
+    ViewData["Title"] = "ViewAllMembers";
+}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/table.css">
+
+    
+  </head>
+  <body>
+  <div class="content">
+        <div class="container">
+
+      <div class="table-responsive">
+                    <table class="table table-striped custom-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Номер</th>
+                                <th scope="col">Име</th>
+                                <th scope="col">Дата</th>
+                                <th scope="col">От час</th>
+                                <th scope="col">До час</th>
+                                <th scope="col">Регион</th>
+                                <th scope="col">Уникален код</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr scope="row">
+                                    <td>@a.ID</td>
+                                    <td>@Html.ActionLink(a.Name, "EditActivity", "Activity", new {id = a.ID})</td>
+                                    <td>@a.FromHour</td>
+                                    <td>@a.ToHour</td>
+                                    <td>@a.Region</td>
+                                    <td>@a.UniqueCode</td>
+                                </tr>
+                            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

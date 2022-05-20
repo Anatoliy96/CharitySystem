@@ -63,7 +63,7 @@ namespace CharitySystem.Controllers
 
             if (Name == null)
             {
-                return ViewBag.Error = "Member don't exist";
+                return ViewBag.Error = "Organization not exist";
             }
             else
             {

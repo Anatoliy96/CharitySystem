@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AidSystem.Migrations
+namespace CharitySystem.Migrations
 {
     public partial class init : Migration
     {
@@ -15,6 +15,7 @@ namespace AidSystem.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FromHour = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ToHour = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -85,9 +86,9 @@ namespace AidSystem.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecondName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Code = table.Column<int>(type: "int", nullable: false),
                     AppointedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateLeft = table.Column<DateTime>(type: "datetime2", nullable: false),

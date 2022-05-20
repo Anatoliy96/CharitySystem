@@ -30,8 +30,8 @@ namespace AidSystemDAL.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=AidSystemDb;Trusted_Connection=True;",
-                b => b.MigrationsAssembly("AidSystem"));
+            optionsBuilder.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=CharitySystemDb;Trusted_Connection=True;",
+                b => b.MigrationsAssembly("CharitySystem"));
         }
 
         public DbSet<Member> Members { get; set; }

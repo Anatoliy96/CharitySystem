@@ -10,6 +10,7 @@ namespace AidSystemDAL.Models
 {
     public class Activity : Entity
     {
+        public string Name { get; set; }
         public DateTime Date { get; set; }
         public DateTime FromHour { get; set; }
         public DateTime ToHour { get; set; }

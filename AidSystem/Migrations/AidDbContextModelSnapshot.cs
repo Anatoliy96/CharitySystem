@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AidSystem.Migrations
+namespace CharitySystem.Migrations
 {
     [DbContext(typeof(AidDbContext))]
     partial class AidDbContextModelSnapshot : ModelSnapshot
@@ -35,6 +35,10 @@ namespace AidSystem.Migrations
 
                     b.Property<DateTime>("FromHour")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Region")
                         .IsRequired()
@@ -134,18 +138,15 @@ namespace AidSystem.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrganizationID")
                         .HasColumnType("int");
 
                     b.Property<string>("SecondName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
