@@ -9,9 +9,9 @@ namespace AidSystemDAL.Models
 {
     public class Member : Entity
     {
-        public string FirstName{ get; set; }
-        public string SecondName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName{ get; set; }
+        public string? SecondName { get; set; }
+        public string? LastName { get; set; }
         public int Code { get; set; }
         public DateTime AppointedDate { get; set; }
         public DateTime DateLeft { get; set; }

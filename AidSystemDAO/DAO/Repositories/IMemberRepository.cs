@@ -9,5 +9,6 @@ namespace AidSystemDAL.DAO.Repositories
 {
     public interface IMemberRepository : IRepository<Member>
     {
+        public Member Details(int ID);
     }
 }

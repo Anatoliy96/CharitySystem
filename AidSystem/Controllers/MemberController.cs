@@ -82,6 +82,13 @@ namespace AidSystem.Controllers
                 }
                 return RedirectToAction("ViewAllMembers", "Member");
         } 
+        
+        public IActionResult Delete(int ID)
+        {
+            MemberBLL memberBLL = new MemberBLL();
+            memberBLL.DeleteMember(ID);
 
+            return View("ViewAllMembers");
+        }
     }
 }

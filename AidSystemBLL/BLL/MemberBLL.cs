@@ -56,6 +56,8 @@ namespace AidSystemBLL.BLL
             int Code,
             int OrganizationID)
         {
+            UnitOfWork unitOfWork = new UnitOfWork(new AidDbContext());
+
             Member member = new Member();
                 
                 member.ID = ID;
@@ -66,8 +68,14 @@ namespace AidSystemBLL.BLL
                 member.OrganizationID = OrganizationID;
             
 
-            UnitOfWork unitOfWork = new UnitOfWork(new AidDbContext());
             unitOfWork.Members.Update(member);
+        }
+
+        public void DeleteMember(int ID)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork(new AidDbContext());
+            Member member = unitOfWork.Members.Get(ID);
+            unitOfWork.Members.Remove(member);
         }
     }
 }

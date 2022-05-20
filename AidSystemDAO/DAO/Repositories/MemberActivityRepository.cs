@@ -16,7 +16,7 @@ namespace AidSystemDAL.DAO.Repositories
         {
         }
 
-        public AidDbContext AidContext
+        public AidDbContext? AidContext
         {
             get { return Context as AidDbContext; }
         }

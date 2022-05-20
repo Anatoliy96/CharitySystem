@@ -16,9 +16,14 @@ namespace AidSystemDAL.DAO.Repositories
         {
         }
 
-        public AidDbContext AidContext
+        public AidDbContext? AidContext
         {
             get { return Context as AidDbContext; }
+        }
+
+        public Member Details(int ID)
+        {
+            return AidContext.Members.FirstOrDefault(m => m.ID == ID);
         }
     }
 }

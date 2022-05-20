@@ -1,4 +1,4 @@
-﻿@model AidSystemDAL.Models.Member
+﻿@model AidSystemDAL.Models.Organization
 
 <head>
     <!-- JS -->
@@ -14,36 +14,30 @@
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
             <div class="card">
                 <h5 class="text-center mb-4">Промени участник</h5>
-                @using (Html.BeginForm("EditMember", "Member",FormMethod.Post,
+                @using (Html.BeginForm("EditOrganization", "Organization",FormMethod.Post,
                        new { enctype = "multipart/form-data" }))
                 {
-                <form asp-action="EditMember" class="form-card" onsubmit="event.preventDefault()">
+                <form asp-action="EditOrganization" class="form-card" onsubmit="event.preventDefault()">
                     <div class="row justify-content-between text-left">
                         <div>
                              <input type="hidden" asp-for="ID" class="form-control"/>
                 <span asp-validation-for="ID" class="text-danger"></span>
                         </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label for="FirstName" class="form-control-label px-3">First name</label> 
-                            <input type="text" id="fname" name="FirstName" value="@Model.FirstName" placeholder="Enter your first name" onblur="validate(1)"> 
+                            <label for="Name" class="form-control-label px-3">Name</label> 
+                            <input type="text" id="fname" name="Name" value="@Model.Name" placeholder="Enter your first name" onblur="validate(1)"> 
                         </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label for="SecondName" class="form-control-label px-3">Second name</label> 
-                            <input type="text" id="sname" name="SecondName" value="@Model.SecondName" placeholder="Enter your second name" onblur="validate(2)"> 
+                            <label for="Address" class="form-control-label px-3">Address</label> 
+                            <input type="text" id="sname" name="Address" value="@Model.Address" placeholder="Enter your second name" onblur="validate(2)"> 
                         </div>
                         <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="LastName" class="form-control-label px-3">Last name</label> 
-                           <input type="text" id="lname" name="LastName" value="@Model.LastName" placeholder="Enter your last name" onblur="validate(3)"> 
+                           <label for="Activity" class="form-control-label px-3">Activity</label> 
+                           <input type="text" id="lname" name="Activity" value="@Model.Activity" placeholder="Enter your last name" onblur="validate(3)"> 
                        </div>
                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="Code" class="form-control-label px-3">Код</label> 
-                           <input type="text" id="code" name="Code" value="@Model.Code" placeholder="Enter code" onblur="validate(4)"> 
-                       </div>
-                    </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="OrganizationID" class="form-control-label px-3">Номер на организация</label>
-                           <input type="text" id="organizationid" name="OrganizationID" value="@Model.OrganizationID" placeholder="" onblur="validate(5)"> 
+                           <label for="CoverageOfAreas" class="form-control-label px-3">Код</label> 
+                           <input type="text" id="code" name="CoverageOfAreas" value="@Model.CoverageOfAreas" placeholder="Enter code" onblur="validate(4)"> 
                        </div>
                     </div>
                     <div class="row justify-content-end">
@@ -58,5 +52,3 @@
         </div>
     </div>
 </div>
-
-
