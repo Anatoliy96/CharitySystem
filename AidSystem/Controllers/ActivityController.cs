@@ -26,7 +26,7 @@ namespace CharitySystem.Controllers
         {
             ActivityBLL activityBLL = new ActivityBLL();
             {
-                if (Date.ToString() != null)
+                if (Name != null)
                 {
                     activityBLL.Add(
                  Name,

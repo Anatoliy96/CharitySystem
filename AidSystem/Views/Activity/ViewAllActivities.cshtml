@@ -37,6 +37,7 @@
                                 <th scope="col">До час</th>
                                 <th scope="col">Регион</th>
                                 <th scope="col">Уникален код</th>
+                                <th scope="col">Действия</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,10 +46,12 @@
                                 <tr scope="row">
                                     <td>@a.ID</td>
                                     <td>@Html.ActionLink(a.Name, "EditActivity", "Activity", new {id = a.ID})</td>
-                                    <td>@a.FromHour</td>
-                                    <td>@a.ToHour</td>
+                                    <td>@a.Date.ToString("dd/MM/yyyy")</td>
+                                    <td>@a.FromHour.ToString("hh:mm:ss")</td>
+                                    <td>@a.ToHour.ToString("hh:mm:ss")</td>
                                     <td>@a.Region</td>
                                     <td>@a.UniqueCode</td>
+                                    <td>@Html.ActionLink("Изтрии", "Delete", "Activity", new {id = a.ID})</td>
                                 </tr>
                             }
           </tbody>
