@@ -83,7 +83,7 @@ namespace CharitySystem.Controllers
             OrganizationBLL organization = new OrganizationBLL();
             organization.DeleteOrganization(ID);
 
-            return View("ViewAllOrganizations");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

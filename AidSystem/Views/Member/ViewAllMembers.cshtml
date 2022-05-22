@@ -38,6 +38,7 @@
                                 <th scope="col">Дата назначен</th>
                                 <th scope="col">Дата напуснал</th>
                                 <th scope="col">Номер на организация</th>
+                                <th scope="col">Действия</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,6 +53,7 @@
                                     <td>@m.AppointedDate</td>
                                     <td>@m.DateLeft</td>
                                     <td>@m.OrganizationID</td>
+                                    <td>@Html.ActionLink("Изтрии", "Delete", "Member", new {id = m.ID})</td>
                                 </tr>
                             }
           </tbody>

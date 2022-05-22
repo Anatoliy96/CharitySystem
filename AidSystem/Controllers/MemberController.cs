@@ -88,7 +88,7 @@ namespace AidSystem.Controllers
             MemberBLL memberBLL = new MemberBLL();
             memberBLL.DeleteMember(ID);
 
-            return View("ViewAllMembers");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
