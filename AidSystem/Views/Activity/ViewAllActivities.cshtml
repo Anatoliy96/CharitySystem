@@ -20,14 +20,22 @@
     <!-- Style -->
     <link rel="stylesheet" href="~/css/table.css">
 
+    <!-- JS -->
+    <script src="~/js/search.js"></script>
     
   </head>
   <body>
   <div class="content">
         <div class="container">
-
+            <div class="input-group">
+  <div class="form-outline">
+      <label class="form-label" for="form1">Search</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" />
+  </div>
+</div>
+            @*<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">*@
       <div class="table-responsive">
-                    <table class="table table-striped custom-table">
+                    <table class="table table-striped custom-table" id="myTable">
                         <thead>
                             <tr>
                                 <th scope="col">Номер</th>
