@@ -2,6 +2,8 @@
 using AidSystemDAL.Contexts;
 using AidSystemDAL.DAO.UnitsOfWork;
 using AidSystemDAL.Models;
+using CharitySystemBLL.BLL;
+using CharitySystemBLL.BLL.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +21,16 @@ namespace AidSystem.Controllers
             return View(memberBLL.GetAll());
         }
 
+        [HttpGet]
+        public IActionResult AddMember()
+        {
+            OrganizationBLL organizationBLL = new OrganizationBLL();
+            MemberOrganizationDTO memberOrganizationDTO = new MemberOrganizationDTO();
+            memberOrganizationDTO.Organizations = organizationBLL.GetAll().ToList();
+            return View(memberOrganizationDTO);
+        }
+
+        [HttpPost]
         public IActionResult AddMember(
             string FirstName,
             string SecondName,
@@ -38,7 +50,7 @@ namespace AidSystem.Controllers
                 OrganizationID);
                 }
             }
-            return View("AddMember");
+            return RedirectToAction("Index", "Home");
         }
         
         public IActionResult EditMember(int ID)

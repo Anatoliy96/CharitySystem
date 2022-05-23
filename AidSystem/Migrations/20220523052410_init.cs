@@ -79,6 +79,21 @@ namespace CharitySystem.Migrations
                 {
                     table.PrimaryKey("PK_memberActivities", x => x.ID);
                 });
+            migrationBuilder.CreateTable(
+                name: "Organizations",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Activity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CoverageOfAreas = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organizations", x => x.ID);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Members",
@@ -97,22 +112,12 @@ namespace CharitySystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Members", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Organizations",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Activity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoverageOfAreas = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Organizations", x => x.ID);
+                    table.ForeignKey(
+                    name: "FK_Member_Organization_OrganizationID",
+                    column: x => x.OrganizationID,
+                    principalTable: "Organizations",
+                    principalColumn: "ID",
+                    onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

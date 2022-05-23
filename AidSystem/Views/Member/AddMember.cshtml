@@ -1,4 +1,4 @@
-﻿@model AidSystemDAL.Models.Member;
+﻿@model CharitySystemBLL.BLL.DTO.MemberOrganizationDTO;
 <head>
     <!-- JS -->
     <link rel="stylesheet" href="~/js/AddMember.js">
@@ -35,8 +35,13 @@
                     </div>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex">
-                           <label class="form-control-label px-3">Номер на организация</label>
-                           <input type="text" id="organizationid" name="OrganizationID" placeholder="" onblur="validate(5)"> 
+                           <label class="form-control-label px-3">Избери организация</label>
+                                <select id="organizationid" name="OrganizationID" placeholder="" onblur="validate(5)">
+                                    @foreach(var o in Model.Organizations)
+                                {
+                                    <option value="@o.ID">@o.Name</option>
+                                }
+                                </select>
                        </div>
                     </div>
                     <div class="row justify-content-end">

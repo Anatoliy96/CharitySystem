@@ -17,5 +17,6 @@ namespace AidSystemDAL.Models
         public DateTime DateLeft { get; set; }
         [ForeignKey("Organization")]
         public int OrganizationID { get; set; }
+
     }
 }

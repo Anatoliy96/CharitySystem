@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharitySystem.Migrations
 {
     [DbContext(typeof(AidDbContext))]
-    [Migration("20220520124312_init")]
+    [Migration("20220523052410_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
