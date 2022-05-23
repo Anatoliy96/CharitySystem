@@ -6,9 +6,9 @@ namespace CharitySystem.Controllers.Dashboard
     {
         public IActionResult Dashboard()
         {
-            //CharitySystemBLL.BLL.BLO.Dashboard.Dashboard dashboard = new CharitySystemBLL.BLL.BLO.Dashboard.Dashboard();
-            //return View(dashboard.GetViewModels());
-            return View();
+            CharitySystemBLL.BLL.BLO.Dashboard.Dashboard dashboard = new CharitySystemBLL.BLL.BLO.Dashboard.Dashboard();
+            return View(dashboard.GetViewModels());
+            //return View();
         }
     }
 }

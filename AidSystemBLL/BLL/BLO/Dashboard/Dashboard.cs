@@ -10,15 +10,17 @@ namespace CharitySystemBLL.BLL.BLO.Dashboard
 {
     public class Dashboard
     {
-        //public List<ViewModel> GetViewModels()
-        //{
-        //    MemberBLL memberBLL = new MemberBLL();
-        //    ActivityBLL activityBLL = new ActivityBLL();
-        //    return new List<ViewModel>
-        //    {
-        //        memberBLL.GetAll().Count();
-        //        activityBLL.GetAll().Count();
-        //    }
-        //}
+        public ViewModel GetViewModels()
+        {
+            MemberBLL memberBLL = new MemberBLL();
+            ActivityBLL activityBLL = new ActivityBLL();
+            return new ViewModel
+            {
+                MemberCount = memberBLL.GetAll().Count(),
+                ActivityCount = activityBLL.GetAll().Count(),
+                Members = memberBLL.GetAll().ToList(),
+                Activities = activityBLL.GetAll().ToList()
+            };
+        }
     }
 }

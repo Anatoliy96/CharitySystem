@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CharitySystemBLL.BLL.ViewModels.ViewModel>
+﻿@model CharitySystemBLL.BLL.ViewModels.ViewModel
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +134,7 @@
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                                <div class="ms-3">
                                 <p class="mb-2">Total members</p>
-                                <h6 class="mb-0">MemberCount</h6>
+                                <h6 class="mb-0">@Model.MemberCount</h6>
                             </div> 
                         </div>
                     </div>
@@ -142,7 +143,7 @@
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total activities</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <h6 class="mb-0">@Model.ActivityCount</h6>
                             </div>
                         </div>
                     </div>
@@ -161,61 +162,33 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
-                                    <th scope="col"></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Invoice</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Номер</th>
+                                    <th scope="col">Име</th>
+                                    <th scope="col">Втори име</th>
+                                    <th scope="col">Фамилия</th>
+                                    <th scope="col">Код</th>
+                                    <th scope="col">Дата назначен</th>
+                                    <th scope="col">Дата напуснал</th>
+                                    <th scope="col">Номер на организация</th>
+                                    <th scope="col">Действия</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
+                                @foreach(var m in Model.Members)
+                                {
+                                    <tr>
+                                    <td>@m.ID</td>
+                                    <td>@Html.ActionLink(m.FirstName, "EditMember", "Member", new {id = m.ID})</td>
+                                    <td>@m.SecondName</td>
+                                    <td>@m.LastName</td>
+                                    <td>@m.Code</td>
+                                    <td>@m.AppointedDate</td>
+                                    <td>@m.DateLeft</td>
+                                    <td>@m.OrganizationID</td>
+                                    <td>@Html.ActionLink("Изтрии", "Delete", "Member", new {id = m.ID})</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -231,61 +204,31 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
-                                    <th scope="col"></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Invoice</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Номер</th>
+                                    <th scope="col">Име</th>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">От час</th>
+                                    <th scope="col">До час</th>
+                                    <th scope="col">Регион</th>
+                                    <th scope="col">Уникален код</th>
+                                    <th scope="col">Действия</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                @foreach(var a in Model.Activities)
+                                {
+                                  <tr>
+                                    <td>@a.ID</td>
+                                    <td>@a.Name</td>
+                                    <td>@a.Date.ToString("dd/MM/yyyy")</td>
+                                    <td>@a.FromHour.ToString("hh:mm:ss")</td>
+                                    <td>@a.ToHour.ToString("hh:mm:ss")</td>
+                                    <td>@a.Region</td>
+                                    <td>@a.UniqueCode</td>
                                     <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
+                                 </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
