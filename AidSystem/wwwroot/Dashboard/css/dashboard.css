@@ -197,6 +197,7 @@
     justify-content: center;
     background: var(--dark);
     border-radius: 40px;
+    margin-left: 30px;
 }
 
 .content .navbar .dropdown-item {
@@ -228,6 +229,12 @@
     }
 }
 
+.navbar{
+    padding: 0px !important;
+}
+.navbar-nav{
+    padding-right: 30px !important;
+}
 
 /*** Date Picker ***/
 .bootstrap-datetimepicker-widget.bottom {

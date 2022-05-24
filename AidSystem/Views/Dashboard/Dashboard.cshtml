@@ -53,10 +53,10 @@
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Members</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
+                            <a asp-area="" asp-controller="Dashboard" asp-action="ViewAllMembers" class="dropdown-item">Всички участници</a>
+                            <a asp-area="" asp-controller="Dashboard" asp-action="AddMember" class="dropdown-item">Добави участник</a>
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>
@@ -186,7 +186,6 @@
                                     <td>@m.DateLeft</td>
                                     <td>@m.OrganizationID</td>
                                     <td>@Html.ActionLink("Изтрии", "Delete", "Member", new {id = m.ID})</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr>
                                 }
                             </tbody>
@@ -225,8 +224,7 @@
                                     <td>@a.ToHour.ToString("hh:mm:ss")</td>
                                     <td>@a.Region</td>
                                     <td>@a.UniqueCode</td>
-                                    <td></td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                    <td>@Html.ActionLink("Изтрии", "Delete", "Activity", new {id = a.ID})</td>
                                  </tr>
                                 }
                             </tbody>
@@ -329,6 +327,7 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
