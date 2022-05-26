@@ -1,60 +1,146 @@
-﻿@model AidSystemDAL.Models.Member
+﻿@model CharitySystemBLL.BLL.DTO.MemberOrganizationDTO;
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <!-- JS -->
-    <link rel="stylesheet" href="~/js/AddMember.js">
+    <meta charset="utf-8">
+    <title>CharitySystem</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    @*<link href="img/favicon.ico" rel="icon">*@
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
     
-    <!-- Style -->
-    <link rel="stylesheet" href="~/css/AddMember.css">
-  </head>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/Dashboard/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Dashboard/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/Dashboard/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/Dashboard/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        @Html.Partial("_SpinnerPartial")
+        <!-- Spinner End -->
 
 
-<div class="container-fluid px-1 py-5 mx-auto">
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <div class="card">
-                <h5 class="text-center mb-4">Промени участник</h5>
-                @using (Html.BeginForm("EditMember", "Member",FormMethod.Post,
-                       new { enctype = "multipart/form-data" }))
-                {
-                <form asp-action="EditMember" class="form-card" onsubmit="event.preventDefault()">
-                    <div class="row justify-content-between text-left">
+        <!-- Sidebar Start -->
+        @Html.Partial("_SideBarPartial")
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            @Html.Partial("_NavBarPartial")
+            <!-- Navbar End -->
+
+           <!-- Form Start -->
+            
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Edit member</h6>
+                            @using (Html.BeginForm("EditMember", "Member",FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
+                            {
+                             <form asp-action="EditMember">
                         <div>
-                             <input type="hidden" asp-for="ID" class="form-control"/>
-                <span asp-validation-for="ID" class="text-danger"></span>
+                             <input type="hidden" asp-for="@Model.Member.ID" class="form-control"/>
+                             <span asp-validation-for="@Model.Member.ID" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label for="FirstName" class="form-control-label px-3">First name</label> 
-                            <input type="text" id="fname" name="FirstName" value="@Model.FirstName" placeholder="Enter your first name" onblur="validate(1)"> 
-                        </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label for="SecondName" class="form-control-label px-3">Second name</label> 
-                            <input type="text" id="sname" name="SecondName" value="@Model.SecondName" placeholder="Enter your second name" onblur="validate(2)"> 
-                        </div>
-                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="LastName" class="form-control-label px-3">Last name</label> 
-                           <input type="text" id="lname" name="LastName" value="@Model.LastName" placeholder="Enter your last name" onblur="validate(3)"> 
-                       </div>
-                       <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="Code" class="form-control-label px-3">Код</label> 
-                           <input type="text" id="code" name="Code" value="@Model.Code" placeholder="Enter code" onblur="validate(4)"> 
-                       </div>
-                    </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label for="OrganizationID" class="form-control-label px-3">Номер на организация</label>
-                           <input type="text" id="organizationid" name="OrganizationID" value="@Model.OrganizationID" placeholder="" onblur="validate(5)"> 
-                       </div>
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Промени</button>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter first name" value="@Model.Member.FirstName" name="FirstName">
+                                <label for="FirstName">First name</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter second name" value="@Model.Member.SecondName" name="SecondName">
+                                <label for="SecondName">Second name</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter last name" value="@Model.Member.LastName" name="LastName">
+                                <label for="LastName">Last name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter code" value="@Model.Member.Code" name="Code">
+                                <label for="Code">Code</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect" name="OrganizationID" value="@Model.Member.OrganizationID"
+                                    aria-label="Floating label select example">
+                                        @foreach(var o in Model.Organizations)
+                                        {
+                                           <option selected>Open organizations menu</option>
+                                           <option value="@o.ID">@o.Name</option>
+                                        }
+                                </select>
+                                <label for="OrganizationID">Organizations</label>
+                            </div>
+                            <div class="col-sm-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <div class="m-n2">
+                                <button class="btn btn-outline-primary w-100 m-2" type="submit">Промени</button>
+                            </div>
+                        </div>
                     </div>
-                </form>
-                }
+                    </form>
+                    }
+                        </>
+                    </div>
+                </div>
             </div>
+            
+           <!-- Form End -->
+
+           <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
         </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-</div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/Dashboard/js/main.js"></script>
+    </div>
+</body>
+
+</html>
 
 

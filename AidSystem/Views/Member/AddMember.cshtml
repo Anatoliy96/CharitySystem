@@ -1,57 +1,141 @@
 ﻿@model CharitySystemBLL.BLL.DTO.MemberOrganizationDTO;
-<head>
-    <!-- JS -->
-    <link rel="stylesheet" href="~/js/AddMember.js">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="~/css/AddMember.css">
-  </head>
 
-@using (Html.BeginForm("AddMember", "Member"))
-{
-<div class="container-fluid px-1 py-5 mx-auto">
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <div class="card">
-                <h5 class="text-center mb-4">Добави участник</h5>
-                <form class="form-card" onsubmit="event.preventDefault()">
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label class="form-control-label px-3">First name</label> 
-                            <input type="text" id="fname" name="FirstName" placeholder="Enter your first name" onblur="validate(1)"> 
-                        </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                            <label class="form-control-label px-3">Second name</label> 
-                            <input type="text" id="sname" name="SecondName" placeholder="Enter your second name" onblur="validate(2)"> 
-                        </div>
-                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label class="form-control-label px-3">Last name</label> 
-                           <input type="text" id="lname" name="LastName" placeholder="Enter your last name" onblur="validate(3)"> 
-                       </div>
-                       <div class="form-group col-sm-6 flex-column d-flex">
-                           <label class="form-control-label px-3">Код</label> 
-                           <input type="text" id="code" name="Code" placeholder="Enter code" onblur="validate(4)"> 
-                       </div>
-                    </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex">
-                           <label class="form-control-label px-3">Избери организация</label>
-                                <select id="organizationid" name="OrganizationID" placeholder="" onblur="validate(5)">
-                                    @foreach(var o in Model.Organizations)
-                                {
-                                    <option value="@o.ID">@o.Name</option>
-                                }
-                                </select>
-                       </div>
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Добави</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CharitySystem</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    @*<link href="img/favicon.ico" rel="icon">*@
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/Dashboard/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Dashboard/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/Dashboard/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/Dashboard/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        @Html.Partial("_SpinnerPartial")
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        @Html.Partial("_SideBarPartial")
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            @Html.Partial("_NavBarPartial")
+            <!-- Navbar End -->
+
+
+            <!-- Form Start -->
+            @using (Html.BeginForm("AddMember", "Member"))
+            {
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Add member</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter first name" name="FirstName">
+                                <label for="floatingInput">First name</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter second name" name="SecondName">
+                                <label for="floatingInput">Second name</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter last name" name="LastName">
+                                <label for="floatingInput">Last name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="Enter code" name="Code">
+                                <label for="floatingInput">Code</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect" name="OrganizationID"
+                                    aria-label="Floating label select example">
+                                        @foreach(var o in Model.Organizations)
+                                        {
+                                           <option selected>Open organizations menu</option>
+                                           <option value="@o.ID">@o.Name</option>
+                                        }
+                                </select>
+                                <label for="floatingSelect">Organizations</label>
+                            </div>
+                            <div class="col-sm-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <div class="m-n2">
+                                <button class="btn btn-outline-primary w-100 m-2" type="submit">Добави</button>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+            }
+            <!-- Form End -->
+
+           <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
         </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-</div>
-}
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/Dashboard/js/main.js"></script>
+</body>
+
+</html>
 
