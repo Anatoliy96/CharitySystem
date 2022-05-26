@@ -117,7 +117,12 @@
     }
 }
 
-
+.members-icon{
+    color: #EB1616;
+}
+.activity-icon {
+    color: #EB1616;
+}
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
@@ -143,6 +148,7 @@
     justify-content: center;
     background: var(--dark);
     border-radius: 40px;
+    margin-right: 5px;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,

@@ -10,9 +10,6 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
-    @*<link href="img/favicon.ico" rel="icon">*@
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,7 +72,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <i class="fa fa-male members-icon fa-3x" aria-hidden="true"></i>
                                <div class="ms-3">
                                 <p class="mb-2">Total members</p>
                                 <h6 class="mb-0">@Model.MemberCount</h6>
@@ -84,7 +81,8 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <i class="fa fa-tasks activity-icon fa-3x" aria-hidden="true"></i>
+                            @*<i class="fa fa-chart-pie fa-3x text-primary"></i>*@
                             <div class="ms-3">
                                 <p class="mb-2">Total activities</p>
                                 <h6 class="mb-0">@Model.ActivityCount</h6>
@@ -100,7 +98,7 @@
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Recent Members</h6>
-                        <a href="">Show All</a>
+                        <a asp-area="" asp-action="ViewAllMembers" asp-controller="Member">Show All</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -186,7 +184,7 @@
                         <div class="h-100 bg-secondary rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Calender</h6>
-                                <a href="">Show All</a>
+                                @*<a href="">Show All</a>*@
                             </div>
                             <div id="calender"></div>
                         </div>
@@ -254,15 +252,7 @@
 
 
             <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">CharitySystem</a>, All Right Reserved. 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @Html.Partial("_FooterPartial")
             <!-- Footer End -->
         </div>
         <!-- Content End -->
