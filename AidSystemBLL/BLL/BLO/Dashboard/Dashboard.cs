@@ -14,12 +14,14 @@ namespace CharitySystemBLL.BLL.BLO.Dashboard
         {
             MemberBLL memberBLL = new MemberBLL();
             ActivityBLL activityBLL = new ActivityBLL();
+            OrganizationBLL organizationBLL = new OrganizationBLL();
             return new ViewModel
             {
                 MemberCount = memberBLL.GetAll().Count(),
                 ActivityCount = activityBLL.GetAll().Count(),
                 Members = memberBLL.GetAll().ToList(),
-                Activities = activityBLL.GetAll().ToList()
+                Activities = activityBLL.GetAll().ToList(),
+                Organizations = organizationBLL.GetAll().ToList()
             };
         }
     }

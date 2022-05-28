@@ -56,6 +56,7 @@ namespace CharitySystemBLL.BLL
 
             Organization organization = new Organization();
 
+            organization.ID = ID;
             organization.Name = Name;
             organization.Address = Address;
             organization.Activity = Activity;

@@ -123,9 +123,10 @@
 .activity-icon {
     color: #EB1616;
 }
+
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
-    padding: 7px 20px;
+    padding: 7px 15px;
     color: var(--light);
     font-weight: 500;
     border-left: 3px solid var(--secondary);

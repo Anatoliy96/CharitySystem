@@ -11,6 +11,7 @@ namespace CharitySystemBLL.BLL.ViewModels
     {
         public IEnumerable<Member> Members { get; set; }
         public IEnumerable<Activity> Activities { get; set; }
+        public IEnumerable<Organization> Organizations { get; set; }
         public int MemberCount { get; set; }
         public int ActivityCount { get; set; }
     }

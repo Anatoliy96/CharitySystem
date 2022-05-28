@@ -38,6 +38,7 @@ namespace CharitySystem.Controllers
             return View("AddOrganization");
         }
 
+        [HttpGet]
         public IActionResult EditOrganization(int ID)
         {
             OrganizationBLL organizationBLL = new OrganizationBLL();
@@ -83,7 +84,7 @@ namespace CharitySystem.Controllers
             OrganizationBLL organization = new OrganizationBLL();
             organization.DeleteOrganization(ID);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Dashboard");
         }
     }
 }

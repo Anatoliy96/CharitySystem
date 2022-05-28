@@ -135,6 +135,43 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent organizations</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Номер</th>
+                                    <th scope="col">Име</th>
+                                    <th scope="col">Адрес</th>
+                                    <th scope="col">Активност</th>
+                                    <th scope="col">Покритие на области</th>
+                                    <th scope="col">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var o in Model.Organizations)
+                                {
+                                  <tr>
+                                    <td>@o.ID</td>
+                                    <td>@Html.ActionLink(o.Name, "EditOrganization", "Organization", new {id = o.ID})</td>
+                                    <td>@o.Address</td>
+                                    <td>@o.Activity</td>
+                                    <td>@o.CoverageOfAreas</td>
+                                    <td>@Html.ActionLink("Изтрии", "Delete", "Organization", new {id = o.ID})</td>
+                                 </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -160,7 +197,7 @@
                                 {
                                   <tr>
                                     <td>@a.ID</td>
-                                    <td>@a.Name</td>
+                                    <td>@Html.ActionLink(a.Name, "EditActivity", "Activity", new {id = a.ID})</td>
                                     <td>@a.Date.ToString("dd/MM/yyyy")</td>
                                     <td>@a.FromHour.ToString("hh:mm:ss")</td>
                                     <td>@a.ToHour.ToString("hh:mm:ss")</td>

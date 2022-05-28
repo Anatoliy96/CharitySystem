@@ -89,7 +89,7 @@ namespace CharitySystem.Controllers
             ActivityBLL activityBLL = new ActivityBLL();
             activityBLL.DeleteActivity(ID);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Dashboard");
         }
     }
 }
