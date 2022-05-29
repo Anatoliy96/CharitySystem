@@ -63,10 +63,10 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <i class="fa fa-building building-icon fa-3x" aria-hidden="true"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total donators</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Total organizations</p>
+                                <h6 class="mb-0">@Model.OrganizationCount</h6>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,6 @@
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-tasks activity-icon fa-3x" aria-hidden="true"></i>
-                            @*<i class="fa fa-chart-pie fa-3x text-primary"></i>*@
                             <div class="ms-3">
                                 <p class="mb-2">Total activities</p>
                                 <h6 class="mb-0">@Model.ActivityCount</h6>
@@ -140,7 +139,7 @@
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Recent organizations</h6>
-                        <a href="">Show All</a>
+                        <a asp-area="" asp-action="ViewAllOrganizations" asp-controller="Organization">Show All</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -176,7 +175,7 @@
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Recent Activity</h6>
-                        <a href="">Show All</a>
+                        <a asp-area="" asp-action="ViewAllActivities" asp-controller="Activity">Show All</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">

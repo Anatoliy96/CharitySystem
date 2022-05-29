@@ -19,9 +19,10 @@ namespace CharitySystemBLL.BLL.BLO.Dashboard
             {
                 MemberCount = memberBLL.GetAll().Count(),
                 ActivityCount = activityBLL.GetAll().Count(),
-                Members = memberBLL.GetAll().ToList(),
-                Activities = activityBLL.GetAll().ToList(),
-                Organizations = organizationBLL.GetAll().ToList()
+                OrganizationCount = organizationBLL.GetAll().Count(),
+                Members = memberBLL.GetAll().ToList().Take(10),
+                Activities = activityBLL.GetAll().ToList().Take(10),
+                Organizations = organizationBLL.GetAll().ToList().Take(10)
             };
         }
     }
