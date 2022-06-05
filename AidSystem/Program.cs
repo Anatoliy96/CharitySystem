@@ -2,39 +2,23 @@ using AidSystemDAL.Contexts;
 using AidSystemDAL.DAO.UnitsOfWork;
 using AidSystemDAL.Models.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AidDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AidDbContextConnection' not found.");
+
+builder.Services.AddDbContext<AidDbContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AidDbContext>();;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.Cookie.Name = "AnatoliyCookie";
-                options.LoginPath = "/Home/Login";
-
-            });
-builder.Services.AddDbContext<AidSystemDAL.Contexts.AidDbContext>(options => 
-options.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=AidSystemDb;Trusted_Connection=True;"));
-
-// Add identity 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
-{
-    opt.Password.RequiredLength = 7;
-    opt.Password.RequireDigit = false;
-    opt.Password.RequireUppercase = false;
-    opt.User.RequireUniqueEmail = true;
-    opt.SignIn.RequireConfirmedEmail = true;
-})
-.AddEntityFrameworkStores<AidDbContext>()
-.AddDefaultTokenProviders();
-
-
 
 
 var app = builder.Build();
@@ -57,6 +41,8 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboard}/{action=Dashboard}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

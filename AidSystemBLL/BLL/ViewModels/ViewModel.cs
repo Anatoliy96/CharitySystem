@@ -1,4 +1,5 @@
 ﻿using AidSystemDAL.Models;
+using AidSystemDAL.Models.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;

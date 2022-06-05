@@ -4,6 +4,8 @@ using AidSystemDAL.DAO.UnitsOfWork;
 using AidSystemDAL.Models;
 using CharitySystemBLL.BLL;
 using CharitySystemBLL.BLL.DTO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +23,7 @@ namespace AidSystem.Controllers
             MemberBLL memberBLL = new MemberBLL();
             return View(memberBLL.GetAll());
         }
-
+        
         [HttpGet]
         public IActionResult AddMember()
         {

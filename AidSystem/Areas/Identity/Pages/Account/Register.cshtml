@@ -1,8 +1,7 @@
-﻿@model AidSystemDAL.Models.Authentication.RegisterModel
-
+﻿@page
+@model RegisterModel
 @{
     ViewData["Title"] = "Register";
-    ViewBag.Title = "Register";
 }
 
 <head>
@@ -31,33 +30,35 @@
                     <h2 class="title">Register User</h2>
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm("Register", "Authentication"))
-                    {
-                        <div class="form-row">
-                            <div class="name">Username</div>
-                            <div class="value">
-                                <input class="input--style-6" type="text" name="Username">
-                            </div>
-                        </div>
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        
                         <div class="form-row">
                             <div class="name">Email address</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-6" type="email" name="Email" placeholder="example@email.com">
+                                    <input class="input--style-6" type="email" asp-for="Input.Email" placeholder="example@email.com">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">Password</div>
                             <div class="value">
-                                <input class="input--style-6" type="password" name="Password">
+                                <input class="input--style-6" type="password" asp-for="Input.Password" autocomplete="new-password">
                             </div>
-                </div>
+                       </div>
+                       <div class="form-row">
+                            <div class="name">Confirm password</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="password" asp-for="Input.ConfirmPassword" autocomplete="new-password">
+                                </div>
+                            </div>
+                        </div>
                 
                 <div class="card-footer">
                     <button class="btn btn--radius-2 btn--blue-2" type="submit" value="Register">Register</button>
                 </div>
-                }
+                </form>
             </div>
         </div>
     </div>
@@ -70,3 +71,7 @@
     <script src="~/js/Register.js"></script>
 
 </body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

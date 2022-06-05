@@ -1,32 +1,30 @@
 ﻿using AidSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AidSystem.Controllers
 {
+    
     public class HomeController : Controller
     {
-        
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-        public IActionResult Auth()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Authentication");
-            }
-        }
+        
         public IActionResult Index()
         {
-            return View();
+            //if (User.Identity.IsAuthenticated)
+            //{
+                return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login", "Authentication");
+            //}
         }
 
         public IActionResult Privacy()
