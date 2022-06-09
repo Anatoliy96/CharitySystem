@@ -39,12 +39,15 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index"><span>Home</span></a></li>
+                @if (User.IsInRole("Admin"))
+                      {
+                        <li class="active"><a asp-area="" asp-controller="Dashboard" asp-action="Dashboard"><span>Dashboard</span></a></li>
+                      }
                 <li class="has-children">
                   <a><span>Участници</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a asp-area="" asp-controller="Member" asp-action="ViewAllMembers">Всички участници</a></li>
                     <li><a asp-area="" asp-controller="Member" asp-action="AddMember">Добави участник</a></li>
-                    <li><a asp-area="" asp-controller="Dashboard" asp-action="Dashboard">Dashboard</a></li>
                   </ul>
                 </li>
                 <li class="has-children">
@@ -60,10 +63,9 @@
                   <ul class="dropdown arrow-top">
                     <li><a asp-area="" asp-controller="Activity" asp-action="ViewAllActivities">Всички дейност</a></li>
                     <li><a asp-area="" asp-controller="Activity" asp-action="AddActivity">Добави дейност</a></li>
-                    <li><a asp-area="" asp-controller="Dashboard" asp-action="Dashboard">Dashboard</a></li>
                   </ul>
                 </li>
-                <li class="has-children"><partial name="_LoginPartial" /></li>
+                <li class="active"><partial name="_LoginPartial" /></li>
               </ul>
             </nav>
           </div>
@@ -79,7 +81,11 @@
             @RenderBody()
         </main>
     </div>
-
+    <style>
+        .row{
+            justify-content: space-around;
+        }
+    </style>
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@

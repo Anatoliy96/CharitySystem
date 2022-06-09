@@ -133,11 +133,14 @@ namespace CharitySystem.Areas.Identity.Pages.Account
                     EmailHelper emailHelper = new EmailHelper();
                     bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
 
-                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Admin.ToString()));
-                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Member.ToString()));
-                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.User.ToString()));
+                    if (!await _roleManager.RoleExistsAsync(UserRoles.Roles.Admin.ToString()))
+                        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Admin.ToString()));
+                    if (!await _roleManager.RoleExistsAsync(UserRoles.Roles.Member.ToString()))
+                        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Member.ToString()));
+                    if (!await _roleManager.RoleExistsAsync(UserRoles.Roles.User.ToString()))
+                        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.User.ToString()));
 
-                    await _userManager.AddToRoleAsync(user, UserRoles.role.ToString());
+                    await _userManager.AddToRoleAsync(user, UserRoles.Roles.User.ToString());
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -17,14 +17,7 @@ namespace AidSystem.Controllers
         
         public IActionResult Index()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
                 return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Login", "Authentication");
-            //}
         }
 
         public IActionResult Privacy()

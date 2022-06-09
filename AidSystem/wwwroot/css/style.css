@@ -338,3 +338,7 @@ a {
         width: auto; }
         .site-mobile-menu .site-nav-wrap[data-class="social"] > li:first-child a {
           padding-left: 15px !important; }
+.layout {
+    padding-top: 80px;
+    height: 100vh;
+}
