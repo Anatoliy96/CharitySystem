@@ -1,27 +1,4 @@
-﻿
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AidSystem</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CharitySystem.styles.css" asp-append-version="true" />
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-
-   @* <link rel="stylesheet" href="~/fonts/icomoon/style.css"/>*@
-
-    <link rel="stylesheet" href="~/css/owl.carousel.min.css" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="~/css/style.css" />
-
-    <link rel="stylesheet" href="~/css/ProfileSettings.css" />
-</head>
-@{
+﻿@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -32,42 +9,9 @@
     }
 }
 
-<div class="container-xl px-4 mt-4 layout">
-    <!-- Account page navigation-->
-    <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-        
-    </nav>
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Account Settings</div>
-                <div class="card-body text-center">
-                   <partial name="_ManageNav" />
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-8">
-            <!-- Account details card-->
-            <div class="card mb-4">
-                <div class="card-header">Account Details</div>
-                <div class="card-body">
-                    <form>
-                        <!-- Form Group -->
-                        <div class="mb-3">
-                            @RenderBody()
-                        </div>
-                        
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@*<div class= "layout">
-    <h1>Manage your account</h1>
+@*<h1>Manage your account</h1>
+
+<div>
     <h2>Change your account settings</h2>
     <hr />
     <div class="row">
@@ -79,19 +23,109 @@
         </div>
     </div>
 </div>*@
+<div class="container profile-settings">
+<div class="row gutters">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="account-settings">
+			<div class="user-profile">
+			    <partial name="_ManageNav" />
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mb-2 text-primary">Personal Details</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@RenderBody()
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
 
+<style>
+	body {
+    margin: 0;
+    color: #2e323c;
+    background: #343a40;
+    position: relative;
+    height: 100%;
+}
+.col-md-6{
+    flex: none !important;
+    max-width: 80% !important;
+}
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/jquery-3.3.1.min.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.sticky.js"></script>
-    <script src="~/js/main.js"></script>
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+.profile-settings{
+    padding-top: 80px;
+    height: 100vh;
+}
+</style>
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
-
-
-   

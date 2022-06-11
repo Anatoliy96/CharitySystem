@@ -118,19 +118,34 @@ namespace CharitySystem.Areas.Identity.Pages.Account.Manage
             if (Input.NewEmail != email)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
+                await _userManager.SetUserNameAsync(user, Input.NewEmail);
+                await _userManager.SetEmailAsync(user, Input.NewEmail);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmailChange",
-                    pageHandler: null,
-                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
-                    protocol: Request.Scheme);
-                
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action("ConfirmEmail", "Email",
+                    new { token, email = user.Email }, Request.Scheme);
                 EmailHelper emailHelper = new EmailHelper();
-                bool emailResponse = emailHelper.SendEmail(Input.NewEmail,
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
+                //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                //await _userManager.ChangeEmailAsync(user, Input.NewEmail, code);
+
+                //var callbackUrl = Url.Page(
+                //    "/Account/ConfirmEmailChange",
+                //    pageHandler: null,
+                //    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
+                //    protocol: Request.Scheme);
+
+                //EmailHelper emailHelper = new EmailHelper();
+                //bool emailResponse = emailHelper.SendEmail(
+                //    Input.NewEmail,
+                //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
 
                 StatusMessage = "Confirmation link to change email sent. Please check your email.";
+
+
                 return RedirectToPage();
             }
 
@@ -161,8 +176,9 @@ namespace CharitySystem.Areas.Identity.Pages.Account.Manage
                 pageHandler: null,
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
+
             EmailHelper emailHelper = new EmailHelper();
-            bool emailResponse = emailHelper.SendEmail(email,
+            bool emailResponse = emailHelper.SendEmail(Input.NewEmail,
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
             //await _emailSender.SendEmailAsync(
             //    email,
